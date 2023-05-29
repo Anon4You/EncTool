@@ -10,6 +10,6 @@ npm -g install bash-obfuscate
 curl -O https://raw.githubusercontent.com/Anon4You/EncTool/main/enctool 
 mv enctool $PATH
 chmod +x $PATH/enctool && clear
-printf "Successfully installed Encrypter in your device\nyou can run it by simply typing  \e[32mencto\e[0m have fufun"
+printf "Successfully installed Encrypter in your device\nyou can run it by simply typing \e[32menctool\e[0m have fun"
 
 
