@@ -1,0 +1,129 @@
+#!/usr/bin/python
+import os,sys,time,marshal
+os.system('clear')
+
+# Logo of this script
+logo="""\a\a\33[32m
+ ███████╗ ███╗   ██╗  ██████╗ ██████╗  ██╗   ██╗ ██████╗  ████████╗
+ ██╔════╝ ████╗  ██║ ██╔════╝ ██╔══██╗ ╚██╗ ██╔╝ ██╔══██╗ ╚══██╔══╝
+ █████╗   ██╔██╗ ██║ ██║      ██████╔╝  ╚████╔╝  ██████╔╝    ██║
+ ██╔══╝   ██║╚██╗██║ ██║      ██╔══██╗   ╚██╔╝   ██╔═══╝     ██║
+ ███████╗ ██║ ╚████║ ╚██████╗ ██║  ██║    ██║    ██║         ██║
+ ╚══════╝ ╚═╝  ╚═══╝  ╚═════╝ ╚═╝  ╚═╝    ╚═╝    ╚═╝         ╚═╝
+\33[0;1m           Protect your code and copyright by encrypting
+               them using this encrypter script
+\33[34m________________________________________________________________________
+ \33[31;1m          Author : Alienkrishn | GitHub : Anon4You \33[36;1m
+
+1- Encrypt Shell
+2- Decrypt Shell
+3- Encrypt Python Marshal
+4- About
+0- Exit
+\33[0m"""
+
+# About this script
+about="""\33[32;1m
+coded by Bishal Singh
+
+Github.com/Anon4You
+
+This script is written in python, you can use
+this script to encrypt/decrypt your bash scripts
+and you can also encrypt python code in marshal
+just type enctool to run this script
+
+follow developer»»————>
+Instagram : Alienkrishn
+Youtube   : Alienkrishn
+Telegram  : Alienkrishn
+\33[0m"""
+print(logo)
+
+# taking input from user
+choice=input("Your Choice: ")
+
+# Encrypt bash
+def encbash():
+    in_file=input("Input filename: ")
+    if not os.path.exists(in_file):
+        print("error,file not found")
+        encbash()
+    os.system("bash-obfuscate "+in_file+" -o .temp")
+    out_file=input('Output Filename: ')
+    with open(".temp","r") as temp_f, open(out_file,'w') as out_f:
+        encdata=temp_f.read()
+        out_f.write("# Eencrypted by EncTool\n#By Alienkrishn\n\n"+encdata)
+    os.remove(".temp")
+    print("succesfuly encrypted "+in_file+" and saved as "+out_file)
+
+# Decrypt Bash
+def decbash():
+    in_file=input("Input Filename: ")
+    if not os.path.exists(in_file):
+        print("error,file not found")
+        decbash()
+    with open(in_file,'r') as in_f, open(".temp1",'w') as temp_f:
+        filedata = in_f.read()
+        if not (filedata.find("eval") != -1):
+            print("error can not be decrypted")
+            exit()
+        newdata = filedata.replace("eval","echo")
+        temp_f.write(newdata)
+    out_file=input("output filename: ")
+    os.system("bash .temp1 > .temp2")
+    os.remove(".temp1")
+    with open(".temp2",'r') as temp_f2, open(out_file,'w') as out_f:
+        filedata = temp_f2.read()
+        out_f.write("# Decrypted by EncTool\n#By Alienkrishn\n\n"+filedata)
+    os.remove(".temp2")
+    print("succesfuly decrypted "+in_file+" and saved as "+out_file)
+
+# Encrypt python in marshal
+def encpy():
+    try:
+        file = input('Enter the file name: ')
+        As = file.replace('.py', '')
+    except KeyboardInterrupt:
+        sys.exit()
+    else:
+        try:
+            strng = open(file, 'r').read()
+        except IOError:
+            print('No such file')
+            sys.exit()
+        try:
+            code = compile(strng,'','exec')
+            data = marshal.dumps(code)
+        except TypeError:
+            print("File allready Encrypted")
+    fileout = open(As + '_en.py', 'w')
+    fileout.write('#Encrypted by EncTool\n')
+    fileout.write('#Alienkrishn\n')
+    fileout.write('import marshal\n')
+    fileout.write('exec(marshal.loads(' + repr(data) + '))')
+    fileout.close()
+    time.sleep(3)
+    print ('The name of the new encrypted file :' + As + '_en.py')
+
+# Choses
+if choice=='1':
+    encbash()
+elif choice=='2':
+    decbash()
+elif choice=='3':
+    encpy()
+elif choice=='0':
+    print("thanks for using this script")
+    time.sleep(1)
+    sys.exit()
+elif choice=='4':
+    print(about)
+else:
+    print("Wrong input please try again..")
+    time.sleep(2)
+    os.system("enctool")
+
+
+
+
