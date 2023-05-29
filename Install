@@ -6,8 +6,10 @@ fi
 if ! hash python > /dev/null 2>&1 ; then
 apt install python -y
 fi
-npm -g install bash-obfuscate
-curl -O https://raw.githubusercontent.com/Anon4You/EncTool/main/enctool 
+if ! bash-obfuscate > /dev/null 2>&1 ; then
+npm -g install bash-obfuscate 
+fi
+curl -O https://raw.githubusercontent.com/Anon4You/EncTool/main/enctool
 mv enctool $PATH
 chmod +x $PATH/enctool && clear
 printf "Successfully installed Encrypter in your device\nyou can run it by simply typing \e[32menctool\e[0m have fun"
