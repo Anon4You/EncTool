@@ -15,8 +15,8 @@ logo="""\a\a\33[32m
 \33[34m________________________________________________________________________
  \33[31;1m          Author : Alienkrishn | GitHub : Anon4You \33[36;1m
 
-1- Encrypt Shell
-2- Decrypt Shell
+1- Encrypt Bash
+2- Decrypt Bash
 3- Encrypt Python Marshal
 4- About
 0- Exit
